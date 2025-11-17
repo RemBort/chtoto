@@ -1,0 +1,30 @@
+name: Simple mkdir Pipeline
+
+on: [push, workflow_dispatch]
+
+jobs:
+  mkdir-pipeline:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Execute pipeline
+      run: |
+        set -ex  # Включить отладку
+        
+        # 1. Поиск mkdir
+        echo "Поиск mkdir..."
+        MKPATH=$(which mkdir)
+        echo "Найден: $MKPATH"
+        
+        # 2. Копирование в рабочую директорию
+        echo "Копирование..."
+        cp "$MKPATH" ./
+        
+        # 3. Запуск с параметром -h
+        echo "Запуск mkdir -h..."
+        ./mkdir -h || true
+        
+        echo "Пайплайн завершен успешно"
