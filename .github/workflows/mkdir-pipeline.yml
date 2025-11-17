@@ -15,7 +15,7 @@ jobs:
         set -ex  # Включить отладку
         
         # 1. Поиск mkdir
-        echo "🔍 Поиск mkdir..."
+        echo "Поиск mkdir..."
         MKPATH=$(which mkdir)
         echo "Найден: $MKPATH"
         
